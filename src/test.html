@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body{
+            display: table;
+            margin-right: auto;
+            margin-left: auto;
+            font-family: 'Poppins';
+            background-color: #FFFFFF;
+            padding-top: 40px;
+            line-height: normal;
+        }
+        img {
+            width: 97px;
+            height: 210px;
+            border-radius: 13px 1px 1px 13px;
+            object-fit: cover;
+        }
+        .receipt_continer {
+           max-width: 525px;
+        }
+        .receipt_continer_heading {
+            display: table-cell;
+            width: 525px;
+            background: #F35597; 
+            border-radius: 24px;
+            height: 105px;
+            padding-left: 23px;
+            padding-right: 30px;
+            vertical-align: middle;
+        }
+        .receipt_continer_price_room {
+            display: table;
+            float: right;
+        }
+        .receipt_continer_price_room > * {
+            display: table-row;
+        }
+        .receipt_continer_currency {
+            display: table;
+            margin-right: auto;
+            margin-left: auto;
+        }
+       .receipt_continer_heading_bottom {
+            margin-bottom: 5px;
+            width: 100%;
+            border: 1px solid #DFE2E5;
+            border-radius: 15px;
+            margin-right: 2px;
+            display: flex;
+        }
+        .receipt_continer_heading_bottom > div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .remove-tablecell {
+            margin-bottom: 5px;
+            padding-top: 10px;
+            padding-left: 15px;
+            padding-right: 10px;
+        }
+        .remove-tablecell > * {
+            display: table;
+        }
+        .receipt_continer_propertydetail {
+            border-radius: 13px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: table;
+            width: 525px;
+        }
+        .receipt_continer_propertydetail > div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .receipt_continer_propertydetail_image {
+            width: 350px;
+            height: 210px;
+            border-radius: 13px;
+            border: 1px #DFE2E5 solid;
+            float: left;
+            margin-right: 8px; 
+        }
+        .receipt_container_checkinandrooms {
+            width: 168px;
+            height: 210px;
+            border-radius: 13px; 
+            border: 1px #DFE2E5 solid;
+            display: table-row;
+        }
+        .receipt_continer_currency_detail {
+            font-weight: 400;
+            font-size: 10px;
+            color: #000000;
+        }
+        .receipt_continer_guestdetail_detail_heading {
+            font-weight: 600;
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 14px;
+        }
+        .guest_info {
+            font-weight: 400;
+            font-size: 8.0086px;
+            color: #000000;
+        }
+        .gust_info_month {
+            font-weight: 600;
+            font-size: 8.0086px;
+            color: #000000;
+        }
+        .guest_info_type {
+            font-weight: 600;
+            font-size: 10px;
+            color: #000000;
+            margin-right: 3px;
+        }
+        .receipt_continer_propertydetail_addres {
+            font-weight: 600;
+            font-size: 14px;
+            color: #000000;
+        }
+        .receipt_continer_propertydetail_addres:first-of-type {
+            margin-top: 10px;
+        }
+        .receipt_continer_propertydetail_phone {
+            font-weight: 600;
+            font-size: 10px;
+            color: #000000;
+        }
+        .receipt_continer_propertydetail_detail {
+            font-weight: 400;
+            font-size: 10px;
+            color: #000000;
+        }
+        .receipt_continer_divider {
+            width: 21px;
+            display: block !important;
+            height: 100%;
+            margin-top: 25px;
+            margin-right: 0px;
+        }
+        .divider {
+            width: 0.8px;
+            height: 74px;
+            background: #CECECE;
+            text-align: center;
+        }
+        .receipt_container_price_text {
+            font-weight: 400;
+            font-size: 5.606px;
+            color: #000000;
+        }
+        .receipt_container_price_number {
+            font-weight: 400;
+            font-size: 20.8223px;
+            color: #000000;
+            text-align: center;
+        }
+        .italic_font {
+            font-style: italic;
+        }
+        .receipt_continer_propertydetail_images {
+            width: 225px;
+            height: 210px;
+            margin-left: 15px;
+            display: table;
+            float: unset;
+            display: inline-block;
+        } 
+        .receipt_continer_propertydetail_images > * {
+            display: table;
+            margin-top: 3px;
+        } 
+       .receipt_continer_propertydetail_roomnight {
+            text-align: center;
+            max-width: 5px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .receipt_continer_propertydetail_checkincheckout {
+            text-align: center;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-top: 12px;
+        }
+        .float_left {
+            float: left;
+        }
+        .float_right {
+            float: right;
+        }
+        .receipt_continer_propertydetail_checkincheckout > * {
+            display: inline-block;
+        }
+        .receipt_continer_propertydetail_roomnight {
+            display: table;
+        }
+        .receipt_continer_propertydetail_roomnight > * {
+            display: table-cell;
+            vertical-align: bottom;
+        }
+        .customer_receipt {
+            color: white;
+            font-size: 12.81px;
+            font-weight: 600;
+        }
+        .confirmation_code_text {
+            color: white;
+            font-size: 7.21px;
+            font-weight: 400;
+        }
+        .confirmation_code {
+            color: white;
+            font-size: 10.41px;
+            font-weight: 600;
+        }
+        .dividers {
+            position: relative;
+            height: 1px;
+            background-color: #000;
+        }
+        .dividers::before {
+            content: "";
+            position: absolute;
+            top: -5px; 
+            right: -10px; 
+            width: 20px; 
+            height: 10px; 
+            background-color: #000;
+            transform: rotate(45deg);
+        }
+        .receipt_continer_heading_price_numberofnight > * {
+            display: table-cell;
+        }
+      
+        .receipt_continer_heading_price_numberofnight {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-top: 5px;
+        }
+       
+        .receipt_continer_price:last-child {
+            text-align: right;
+            vertical-align: bottom;
+        }
+        .guest_info_icon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+       .paymentInformation_container {
+            color: #000000;
+            margin-bottom: 10px;
+            margin-top: 10px;
+       }
+       .paymentInformation_container_title {
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 18px;
+       }
+       .paymentInformation_container_info {
+            font-weight: 400;
+            font-size: 6px;
+            line-height: 9px;
+            width: 527px;
+       }
+       .star_svg {
+           vertical-align: middle;
+       }
+       .receipt_container_table {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        width: 530px;
+       }
+       .receipt_continer_propertydetail_starts {
+            padding: 1px 10px 1px 5px;
+            gap: 10px;
+            border-radius: 5px;
+            border: 0.3px solid #797882;
+            display: table;
+            margin-top: 3px;
+            color: #797882;
+            font-size: 10px;
+            font-weight: 400;
+       }
+       .breakline {
+            background: #DFE2E5;
+            height: 1px;
+       }
+       .green{
+            color: #2B8A4B;
+       }
+       .yellow {
+            color: #EFB008;
+       }
+       .timeline-container { 
+    width: 80%;
+    margin: 20px auto;
+    position: relative; 
+    margin-bottom: 61px;
+  }
+  .line { 
+    height: 2px; 
+    background-color: #ccc; 
+    position: absolute; 
+    top: 50%; 
+    width: 100%; 
+    transform: translateY(-50%); 
+  }
+  .segment { 
+    height: 100%; 
+    position: absolute; 
+    z-index: 1; 
+  }
+  .dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    position: absolute; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 2; 
+  }
+  .date-label { 
+    position: absolute; 
+    top: 20px; 
+    transform: translateX(-50%); 
+    font-size: 12px; 
+    white-space: nowrap; 
+    text-align: center; 
+  }
+
+  .timeline-container2 { 
+    width: 80%;
+    margin: 20px auto;
+    position: relative; 
+    margin-bottom: 61px;
+  }
+  .line2 { 
+    height: 2px; 
+    background-color: #ccc; 
+    position: absolute; 
+    top: 50%; 
+    width: 80%; 
+    transform: translateY(-50%); 
+  }
+  .segment2 { 
+    height: 100%; 
+    position: absolute; 
+    z-index: 1; 
+  }
+  .dot2 { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    position: absolute; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 2; 
+  }
+  .date-label2 { 
+    position: absolute; 
+    top: 20px; 
+    transform: translateX(-50%); 
+    font-size: 12px; 
+    white-space: nowrap; 
+    text-align: center; 
+  }
+   .timeline-wizard {
+    color: #797882;
+    font-size: 10px;
+    font-weight: 400;
+    display: flex;
+    width: 91%;
+  }
+       
+ .horizontal-line {
+    height: 2px; 
+    display: block;
+    background-color: black; 
+    width: 100%; 
+    margin: 10px 0; 
+ }
+ .timeline-wizard-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+ }
+ .timeline-wizard-container-dot {
+    display: flex;
+    align-items: center;
+    margin-right: 3px;
+    margin-left: 3px;
+ }
+ .timeline-wizard-container-dotcircel{
+    display: flex;
+ }
+ .arrival-container{
+    width: auto;
+ }
+ .arrivaldot {
+    margin: 5px 0px;
+ }
+    </style>
+</head>
+<body>
+    <div class="receipt_continer">
+        <div class="receipt_continer_heading">
+            <svg width="202" height="45" viewBox="0 0 202 45" fill="none">
+                <path d="M72.2683 35.1479C71.6827 35.8835 70.9744 36.544 70.1431 37.1286C69.4253 37.6192 68.5375 38.0722 67.4795 38.487C66.4217 38.9021 65.1843 39.1098 63.7675 39.1098C62.2374 39.1098 60.8158 38.8361 59.5029 38.289C58.1902 37.7417 57.0518 37.0015 56.0886 36.0674C55.1251 35.1337 54.3695 34.0394 53.8217 32.7847C53.2737 31.5303 53 30.1953 53 28.7806C53 27.3655 53.2737 26.0307 53.8217 24.7762C54.3695 23.5216 55.1251 22.4273 56.0886 21.4934C57.0518 20.5595 58.1902 19.8191 59.5029 19.272C60.8158 18.7249 62.2374 18.4512 63.7675 18.4512C65.1465 18.4512 66.3603 18.6587 67.4086 19.0739C68.4571 19.4888 69.3309 19.9418 70.0298 20.4321C70.842 21.0172 71.541 21.6775 72.1266 22.4131L69.2931 25.243C68.8775 24.7149 68.3956 24.2431 67.848 23.8281C67.3756 23.4695 66.7995 23.1441 66.1195 22.8518C65.4394 22.5595 64.6553 22.4131 63.7675 22.4131C62.8797 22.4131 62.0484 22.5781 61.274 22.9085C60.4994 23.2386 59.8241 23.6914 59.248 24.2667C58.6719 24.8421 58.2185 25.5165 57.8878 26.2901C57.5571 27.0637 57.392 27.8938 57.392 28.7806C57.392 29.667 57.5571 30.4973 57.8878 31.2707C58.2185 32.0445 58.6719 32.7187 59.248 33.2941C59.8241 33.8696 60.4994 34.3224 61.274 34.6525C62.0484 34.9827 62.8797 35.1479 63.7675 35.1479C64.6931 35.1479 65.5055 35.0015 66.2045 34.7092C66.9034 34.4167 67.4985 34.0913 67.9897 33.7329C68.5563 33.3177 69.038 32.8461 69.4346 32.3178L72.2683 35.1479Z" fill="white"/>
+                <path d="M72.9346 24.793H76.7598V32.5754C76.7598 33.4242 76.9866 34.0846 77.44 34.5561C77.8933 35.0279 78.5165 35.2637 79.3101 35.2637C80.1603 35.2637 80.8686 34.976 81.4352 34.4005C82.0019 33.825 82.2855 33.0752 82.2855 32.1506V24.793H86.1107V38.6594H82.2855V36.6786H82.1436C81.8414 37.0937 81.4919 37.471 81.0952 37.8105C80.7552 38.0936 80.3254 38.353 79.8059 38.5888C79.2865 38.8246 78.696 38.9426 78.035 38.9426C77.3171 38.9426 76.6512 38.8056 76.0373 38.5322C75.4233 38.2587 74.885 37.8719 74.4221 37.3721C73.9594 36.872 73.5958 36.2636 73.3312 35.5465C73.0668 34.8299 72.9346 34.0279 72.9346 33.1412V24.793Z" fill="white"/>
+                <path d="M94.9258 35.4222C95.4172 35.4222 95.8799 35.3277 96.3143 35.1392C96.7489 34.9506 97.1265 34.6958 97.4478 34.3751C97.769 34.0545 98.0191 33.6675 98.1986 33.2149C98.3781 32.7619 98.4678 32.2715 98.4678 31.7432C98.4678 31.2149 98.3781 30.7244 98.1986 30.2718C98.0191 29.8188 97.769 29.4322 97.4478 29.1112C97.1265 28.7907 96.7489 28.5361 96.3143 28.3473C95.8799 28.1586 95.4172 28.0643 94.9258 28.0643C94.4346 28.0643 93.9719 28.1586 93.5373 28.3473C93.103 28.5361 92.7252 28.7907 92.404 29.1112C92.0828 29.4322 91.8325 29.8188 91.653 30.2718C91.4736 30.7244 91.384 31.2149 91.384 31.7432C91.384 32.2715 91.4736 32.7619 91.653 33.2149C91.8325 33.6675 92.0828 34.0545 92.404 34.3751C92.7252 34.6958 93.103 34.9506 93.5373 35.1392C93.9719 35.3277 94.4346 35.4222 94.9258 35.4222ZM98.3263 36.6956H98.1844C97.901 37.1106 97.5422 37.4879 97.1078 37.8277C96.7299 38.1105 96.267 38.3701 95.7194 38.6057C95.1714 38.8417 94.5292 38.9594 93.7924 38.9594C92.9802 38.9594 92.1962 38.785 91.4404 38.4359C90.685 38.0869 90.019 37.5917 89.4429 36.9503C88.8666 36.309 88.4086 35.5447 88.0686 34.6581C87.7286 33.7713 87.5586 32.7997 87.5586 31.7432C87.5586 30.6867 87.7286 29.7152 88.0686 28.8284C88.4086 27.9416 88.8666 27.1823 89.4429 26.5503C90.019 25.9184 90.685 25.4232 91.4404 25.0647C92.1962 24.7062 92.9802 24.5269 93.7924 24.5269C94.5292 24.5269 95.1714 24.6448 95.7194 24.8808C96.267 25.1166 96.7299 25.376 97.1078 25.6588C97.5422 25.9984 97.901 26.3759 98.1844 26.7909H98.3263V18.8672H102.152V38.6766H98.3263V36.6956Z" fill="white"/>
+                <path d="M111.064 35.4222C111.555 35.4222 112.018 35.3277 112.452 35.1392C112.887 34.9506 113.264 34.6958 113.586 34.3751C113.907 34.0545 114.157 33.6675 114.336 33.2149C114.516 32.7619 114.606 32.2715 114.606 31.7432C114.606 31.2149 114.516 30.7244 114.336 30.2718C114.157 29.8188 113.907 29.4322 113.586 29.1112C113.264 28.7907 112.887 28.5361 112.452 28.3473C112.018 28.1586 111.555 28.0643 111.064 28.0643C110.573 28.0643 110.11 28.1586 109.675 28.3473C109.241 28.5361 108.863 28.7907 108.542 29.1112C108.22 29.4322 107.97 29.8188 107.791 30.2718C107.611 30.7244 107.522 31.2149 107.522 31.7432C107.522 32.2715 107.611 32.7619 107.791 33.2149C107.97 33.6675 108.22 34.0545 108.542 34.3751C108.863 34.6958 109.241 34.9506 109.675 35.1392C110.11 35.3277 110.573 35.4222 111.064 35.4222ZM114.464 36.6956H114.322C114.039 37.1106 113.68 37.4879 113.246 37.8277C112.868 38.1105 112.405 38.3701 111.857 38.6057C111.309 38.8417 110.667 38.9594 109.93 38.9594C109.118 38.9594 108.334 38.785 107.578 38.4359C106.823 38.0869 106.157 37.5917 105.581 36.9503C105.005 36.309 104.546 35.5447 104.206 34.6581C103.866 33.7713 103.696 32.7997 103.696 31.7432C103.696 30.6867 103.866 29.7152 104.206 28.8284C104.546 27.9416 105.005 27.1823 105.581 26.5503C106.157 25.9184 106.823 25.4232 107.578 25.0647C108.334 24.7062 109.118 24.5269 109.93 24.5269C110.667 24.5269 111.309 24.6448 111.857 24.8808C112.405 25.1166 112.868 25.376 113.246 25.6588C113.68 25.9984 114.039 26.3759 114.322 26.7909H114.464V18.8672H118.289V38.6766H114.464V36.6956Z" fill="white"/>
+                <path d="M124.697 18.8672H120.872V38.6768H124.697V18.8672Z" fill="white"/>
+                <path d="M126.223 40.6408C126.355 40.6973 126.506 40.7445 126.677 40.7823C126.998 40.8766 127.366 40.9236 127.782 40.9236C128.424 40.9236 128.934 40.7633 129.312 40.4427C129.69 40.122 129.982 39.7162 130.19 39.2258L130.474 38.5183L125.09 24.793H129.198L132.457 33.9903H132.599L135.716 24.793H139.824L134.157 39.7919C133.572 41.3574 132.849 42.5509 131.99 43.3717C131.13 44.1923 130.058 44.6027 128.773 44.6027C128.415 44.6027 128.079 44.5838 127.768 44.546C127.456 44.5083 127.187 44.461 126.96 44.4045C126.695 44.329 126.45 44.2537 126.223 44.178V40.6408Z" fill="white"/>
+                <path d="M140.808 18.8672H144.633L154.267 31.1774V18.8672H158.518V38.6766H154.692L145.058 26.3666V38.6766H140.808V18.8672Z" fill="white"/>
+                <path d="M170.838 30.3862C170.63 29.7448 170.257 29.1834 169.718 28.7024C169.18 28.2213 168.514 27.9807 167.721 27.9807C166.927 27.9807 166.262 28.2213 165.723 28.7024C165.185 29.1834 164.812 29.7448 164.604 30.3862H170.838ZM173.955 36.7535C173.539 37.1687 173.029 37.546 172.424 37.8856C171.914 38.1686 171.291 38.428 170.554 38.6638C169.817 38.8996 168.967 39.0175 168.004 39.0175C166.984 39.0175 166.025 38.8287 165.128 38.4516C164.231 38.0743 163.447 37.5555 162.776 36.8952C162.106 36.2347 161.581 35.4707 161.203 34.6029C160.826 33.735 160.637 32.801 160.637 31.8011C160.637 30.8202 160.826 29.891 161.203 29.0137C161.581 28.1363 162.101 27.3678 162.762 26.7074C163.423 26.0471 164.188 25.5283 165.057 25.151C165.926 24.7735 166.861 24.585 167.862 24.585C168.826 24.585 169.728 24.7689 170.569 25.1369C171.409 25.5047 172.141 25.9999 172.765 26.6225C173.388 27.245 173.884 27.976 174.252 28.8156C174.62 29.6552 174.805 30.556 174.805 31.5183C174.805 31.7823 174.795 32.0135 174.776 32.2115C174.757 32.4097 174.738 32.5842 174.72 32.7352C174.701 32.9237 174.682 33.0842 174.663 33.2162H164.604C164.812 33.8576 165.213 34.419 165.808 34.8999C166.403 35.3809 167.23 35.6216 168.288 35.6216C168.892 35.6216 169.421 35.5461 169.874 35.3953C170.328 35.2443 170.715 35.065 171.036 34.8575C171.395 34.6312 171.707 34.3669 171.971 34.0651L173.955 36.7535Z" fill="white"/>
+                <path d="M177.115 34.0646C177.398 34.3666 177.728 34.6307 178.106 34.8572C178.427 35.0645 178.815 35.2438 179.268 35.3948C179.721 35.5458 180.232 35.6211 180.798 35.6211C181.44 35.6211 181.884 35.5268 182.13 35.3382C182.376 35.1495 182.498 34.9135 182.498 34.6307C182.498 34.3666 182.324 34.145 181.974 33.9657C181.625 33.7864 181.185 33.6118 180.656 33.442C180.128 33.2723 179.561 33.0742 178.956 32.8477C178.352 32.6214 177.785 32.3384 177.256 31.9989C176.727 31.6591 176.288 31.2348 175.939 30.7254C175.589 30.2161 175.414 29.5839 175.414 28.8294C175.414 28.2634 175.537 27.7256 175.783 27.2163C176.028 26.707 176.382 26.2542 176.845 25.8579C177.308 25.4616 177.884 25.1503 178.574 24.924C179.263 24.6977 180.052 24.5845 180.94 24.5845C181.828 24.5845 182.607 24.6977 183.278 24.924C183.948 25.1503 184.51 25.3958 184.964 25.6598C185.492 25.9804 185.946 26.3295 186.324 26.707L184.057 29.1123C183.83 28.9048 183.556 28.716 183.235 28.5462C182.971 28.3954 182.645 28.2634 182.258 28.1502C181.87 28.0369 181.431 27.9804 180.94 27.9804C180.449 27.9804 180.09 28.07 179.863 28.2493C179.636 28.4283 179.523 28.6217 179.523 28.8294C179.523 29.0935 179.698 29.3152 180.047 29.4944C180.397 29.6737 180.836 29.8481 181.365 30.0179C181.894 30.1877 182.461 30.3859 183.065 30.6122C183.67 30.8385 184.236 31.1215 184.765 31.4611C185.294 31.8006 185.733 32.2252 186.083 32.7347C186.432 33.244 186.607 33.8759 186.607 34.6307C186.607 35.2343 186.484 35.8003 186.239 36.3286C185.993 36.8569 185.625 37.319 185.134 37.7153C184.643 38.1116 184.038 38.4275 183.32 38.6633C182.602 38.8991 181.762 39.0172 180.798 39.0172C179.835 39.0172 178.985 38.8849 178.248 38.6209C177.511 38.3566 176.888 38.0643 176.378 37.7435C175.773 37.385 175.263 36.9605 174.848 36.4701L177.115 34.0646Z" fill="white"/>
+                <path d="M188.862 28.6252H186.453V25.0877H187.728C188.767 25.0877 189.287 24.5219 189.287 23.3898V20.8428H192.687V25.0877H195.804V28.6252H192.687V33.2945C192.687 33.936 192.853 34.4264 193.183 34.7659C193.514 35.1057 193.962 35.2755 194.529 35.2755C194.944 35.2755 195.313 35.2282 195.634 35.1339C195.804 35.0962 195.955 35.049 196.087 34.9924V38.5299C195.861 38.6053 195.615 38.6807 195.351 38.7562C195.124 38.8129 194.855 38.8599 194.543 38.8977C194.231 38.9354 193.896 38.9544 193.537 38.9544C192.12 38.9544 190.987 38.5157 190.137 37.6384C189.287 36.761 188.862 35.5018 188.862 33.8603V28.6252Z" fill="white"/>
+                <path d="M196.918 36.7252C196.918 36.0839 197.135 35.5461 197.57 35.1123C198.004 34.6782 198.543 34.4614 199.185 34.4614C199.827 34.4614 200.366 34.6782 200.8 35.1123C201.235 35.5461 201.452 36.0839 201.452 36.7252C201.452 37.3668 201.235 37.9046 200.8 38.3384C200.366 38.7724 199.827 38.9892 199.185 38.9892C198.543 38.9892 198.004 38.7724 197.57 38.3384C197.135 37.9046 196.918 37.3668 196.918 36.7252Z" fill="white"/>
+                <path d="M41.1265 17.3486C41.1265 17.3486 43.7644 20.0792 48.5252 21.1683C51.4078 16.6581 57.3018 14.1405 63.6242 13.2183C56.6226 12.7463 53.8468 13.6706 52.3941 13.8268C50.74 14.0047 46.0649 10.388 41.1265 17.3486Z" fill="white"/>
+                <path d="M23.9196 22.4019C23.9196 22.4019 21.5555 25.3517 20 28.5452C21.0878 26.8971 22.4181 25.365 25.6497 23.6941L23.9196 22.4019Z" fill="white"/>
+                <path d="M17.544 10.6686C18.5385 11.6207 19.1879 12.4439 19.7934 13.327C16.972 11.9115 12.0492 11.9816 8.91309 12.4058C10.66 11.5922 14.6528 10.515 17.544 10.6686Z" fill="white"/>
+                <path d="M35.2893 10.0864C35.2893 10.0864 36.9784 11.1812 37.7396 13.3161C39.2002 10.4178 44.7595 8.02422 48.5167 7.07868C44.2638 7.22469 42.6464 7.95308 41.7794 8.13686C40.7928 8.34594 36.8595 6.95335 35.2893 10.0864Z" fill="white"/>
+                <path d="M15.0624 39.139C15.0624 39.139 23.4932 31.4902 32.6652 31.4902C42.9801 31.4902 45.9601 26.5324 48.3336 21.6937C48.3336 21.6937 40.3811 20.6323 36.7738 12.2468C36.7738 12.2468 28.1728 0.27005 4.93241 1.01907C4.93241 1.01907 18.1196 8.74716 21.3309 13.9448C24.6224 19.2722 33.1351 25.0638 32.775 24.8864C25.3203 21.2216 20.25 14.2577 20.0783 13.8103C19.9068 13.3629 12.837 11.3013 0.480469 15.454C0.480469 15.454 13.7575 12.8871 28.8977 25.5444C28.8977 25.5444 27.367 26.2312 26.2695 26.9886C19.4827 31.672 15.0453 39.1433 15.0624 39.139Z" fill="white"/>
+                </svg>
+            <div class="receipt_continer_price_room">
+                <span class="customer_receipt">Customer Voucher</span>
+                <span class="confirmation_code_text">Booking Code:<span class="confirmation_code"> &nbsp;&nbsp;CN1644903</span></span>
+                <span class="confirmation_code_text">Partner booking reference ID:<span class="confirmation_code"> &nbsp;&nbsp;18-554896</span></span>
+            </div>
+        </div>
+        <div class="receipt_continer_propertydetail">
+            <div class="receipt_continer_propertydetail_image">
+                <img src="https://img.cuddlynest.com/images/listings/2018/05/23/19/022a1b71191850ac522c6dda9feee37f.jpg"/>
+                <div class="receipt_continer_propertydetail_images">
+                    <span class="receipt_continer_propertydetail_addres">Newark Manhattan Chelsea</span>
+                    <span class="receipt_continer_propertydetail_addres">SpringTill Suites by Hilton</span>
+                    <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">Address: </span> 140 West 28th Street Chelsea, Newark, 10021, United States </span>
+                    <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">Phone: </span>+1 213 555 5434</span>
+                    <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">GPS coordinates: </span>72° 54.545 </span>
+                    <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">Postal code: </span>2342 </span>
+                    <!-- <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">Guest name:</span>Biniyam Badege </span> -->
+                    <span class="receipt_continer_propertydetail_detail"><span class="receipt_continer_propertydetail_phone">Accomodation type: </span>
+                    <br/>
+                    <span span class="receipt_continer_propertydetail_starts">
+                    Hotel
+                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" class="star_svg">
+                        <path d="M5.98492 1.33313C6.98725 1.33313 7.7998 2.23597 7.7998 3.34967C7.7998 4.46338 6.98725 5.36621 5.98492 5.36621C4.98259 5.36621 4.17003 4.46338 4.17003 3.34967C4.17003 2.23597 4.98259 1.33313 5.98492 1.33313ZM6.31348 2.61638C6.13124 2.61638 5.9835 2.78054 5.9835 2.98303C5.9835 3.18552 6.13124 3.34967 6.31348 3.34967C6.49572 3.34967 6.64346 3.18552 6.64346 2.98303C6.64346 2.78054 6.49572 2.61638 6.31348 2.61638Z" fill="#EFB008"/>
+                        <path d="M4.00301 4.26678C4.00301 4.21817 4.02038 4.17155 4.05132 4.13717C4.19464 3.97789 4.19464 3.97789 4.32174 3.8367C4.41015 3.7385 4.5609 3.78097 4.59653 3.91411C4.70985 4.33762 5.09213 4.76331 5.46908 4.89984C5.58614 4.94224 5.62167 5.10703 5.53461 5.20377C4.71427 6.11525 3.6927 7.25156 2.46988 8.61269C2.43893 8.64714 2.39692 8.6665 2.35311 8.6665L1.36317 8.6665C1.27205 8.6665 1.19818 8.58443 1.19818 8.48318L1.19818 7.38325C1.19818 7.33463 1.21557 7.288 1.24651 7.25362L1.4115 7.0703C1.44244 7.03592 1.48441 7.01661 1.52816 7.01661L2.02313 7.01661L2.02313 6.46664C2.02313 6.41802 2.04051 6.37139 2.07146 6.33701L2.23645 6.15369C2.26739 6.11931 2.30935 6.1 2.35311 6.1L3.01307 6.1L3.01307 5.36671C3.01307 5.31809 3.03045 5.27146 3.06139 5.23708L3.22638 5.05376C3.25733 5.01938 3.29929 5.00007 3.34305 5.00007L4.00301 5.00007L4.00301 4.26678Z" fill="#EFB008"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" class="star_svg">
+                        <path d="M5.98492 1.33313C6.98725 1.33313 7.7998 2.23597 7.7998 3.34967C7.7998 4.46338 6.98725 5.36621 5.98492 5.36621C4.98259 5.36621 4.17003 4.46338 4.17003 3.34967C4.17003 2.23597 4.98259 1.33313 5.98492 1.33313ZM6.31348 2.61638C6.13124 2.61638 5.9835 2.78054 5.9835 2.98303C5.9835 3.18552 6.13124 3.34967 6.31348 3.34967C6.49572 3.34967 6.64346 3.18552 6.64346 2.98303C6.64346 2.78054 6.49572 2.61638 6.31348 2.61638Z" fill="#EFB008"/>
+                        <path d="M4.00301 4.26678C4.00301 4.21817 4.02038 4.17155 4.05132 4.13717C4.19464 3.97789 4.19464 3.97789 4.32174 3.8367C4.41015 3.7385 4.5609 3.78097 4.59653 3.91411C4.70985 4.33762 5.09213 4.76331 5.46908 4.89984C5.58614 4.94224 5.62167 5.10703 5.53461 5.20377C4.71427 6.11525 3.6927 7.25156 2.46988 8.61269C2.43893 8.64714 2.39692 8.6665 2.35311 8.6665L1.36317 8.6665C1.27205 8.6665 1.19818 8.58443 1.19818 8.48318L1.19818 7.38325C1.19818 7.33463 1.21557 7.288 1.24651 7.25362L1.4115 7.0703C1.44244 7.03592 1.48441 7.01661 1.52816 7.01661L2.02313 7.01661L2.02313 6.46664C2.02313 6.41802 2.04051 6.37139 2.07146 6.33701L2.23645 6.15369C2.26739 6.11931 2.30935 6.1 2.35311 6.1L3.01307 6.1L3.01307 5.36671C3.01307 5.31809 3.03045 5.27146 3.06139 5.23708L3.22638 5.05376C3.25733 5.01938 3.29929 5.00007 3.34305 5.00007L4.00301 5.00007L4.00301 4.26678Z" fill="#EFB008"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none" class="star_svg">
+                            <path d="M5.98492 1.33313C6.98725 1.33313 7.7998 2.23597 7.7998 3.34967C7.7998 4.46338 6.98725 5.36621 5.98492 5.36621C4.98259 5.36621 4.17003 4.46338 4.17003 3.34967C4.17003 2.23597 4.98259 1.33313 5.98492 1.33313ZM6.31348 2.61638C6.13124 2.61638 5.9835 2.78054 5.9835 2.98303C5.9835 3.18552 6.13124 3.34967 6.31348 3.34967C6.49572 3.34967 6.64346 3.18552 6.64346 2.98303C6.64346 2.78054 6.49572 2.61638 6.31348 2.61638Z" fill="#EFB008"/>
+                            <path d="M4.00301 4.26678C4.00301 4.21817 4.02038 4.17155 4.05132 4.13717C4.19464 3.97789 4.19464 3.97789 4.32174 3.8367C4.41015 3.7385 4.5609 3.78097 4.59653 3.91411C4.70985 4.33762 5.09213 4.76331 5.46908 4.89984C5.58614 4.94224 5.62167 5.10703 5.53461 5.20377C4.71427 6.11525 3.6927 7.25156 2.46988 8.61269C2.43893 8.64714 2.39692 8.6665 2.35311 8.6665L1.36317 8.6665C1.27205 8.6665 1.19818 8.58443 1.19818 8.48318L1.19818 7.38325C1.19818 7.33463 1.21557 7.288 1.24651 7.25362L1.4115 7.0703C1.44244 7.03592 1.48441 7.01661 1.52816 7.01661L2.02313 7.01661L2.02313 6.46664C2.02313 6.41802 2.04051 6.37139 2.07146 6.33701L2.23645 6.15369C2.26739 6.11931 2.30935 6.1 2.35311 6.1L3.01307 6.1L3.01307 5.36671C3.01307 5.31809 3.03045 5.27146 3.06139 5.23708L3.22638 5.05376C3.25733 5.01938 3.29929 5.00007 3.34305 5.00007L4.00301 5.00007L4.00301 4.26678Z" fill="#EFB008"/>
+                            </svg>
+                    </span>
+                    </span>
+                </div>
+            </div>
+            <div class="receipt_container_checkinandrooms">
+                <div class="receipt_continer_propertydetail_roomnight">
+                    <span>
+                        <span class="receipt_container_price_text">ROOMS</span>
+                        <span class="receipt_container_price_number">1</span>
+                    </span>
+                    <span class="receipt_continer_divider">
+                        <svg  width="8" height="24" viewBox="0 0 8 24" fill="none">
+                            <path d="M7.9036 0.194475L2.19829 23.3489H0.324285L6.00877 0.194475H7.9036Z" fill="#B5B5B5"/>
+                        </svg>
+                    </span>
+                    <span>
+                        <span class="receipt_container_price_text">NIGHTS</span>
+                        <span class="receipt_container_price_number">7</span>
+                    </span>
+                </div>
+                <div class="receipt_continer_propertydetail_checkincheckout">
+                    <div class="receipt_continer_price_room float_left">
+                        <span class="receipt_container_price_text">CHECK-IN</span>
+                        <span class="receipt_container_price_number">13</span>
+                        <span class="gust_info_month">FEBRUARY</span>
+                        <span class="guest_info italic_font">Monday</span>
+                        <span class="guest_info">
+                            <span class="guest_info_icon">
+                                <svg  width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <path d="M4.00098 0.25C1.92598 0.25 0.250977 1.925 0.250977 4C0.250977 6.075 1.92598 7.75 4.00098 7.75C6.07598 7.75 7.75098 6.075 7.75098 4C7.75098 1.925 6.07598 0.25 4.00098 0.25ZM5.25098 5.75C5.12598 5.75 5.00098 5.7 4.90098 5.6L3.65098 4.35C3.55098 4.25 3.50098 4.125 3.50098 4V1.75C3.50098 1.475 3.72598 1.25 4.00098 1.25C4.27598 1.25 4.50098 1.475 4.50098 1.75V3.8L5.60098 4.9C5.70098 5 5.75098 5.15 5.75098 5.25C5.75098 5.575 5.47598 5.75 5.25098 5.75Z" fill="black"/>
+                                </svg>
+                            </span>
+                            <span>
+                                from <strong>12:00</strong>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="receipt_continer_price_room float_right">
+                        <span class="receipt_container_price_text">CHECK-OUT</span>
+                        <span class="receipt_container_price_number">17</span>
+                        <span class="gust_info_month">FEBRUARY</span>
+                        <span class="guest_info italic_font">Monday</span>
+                        <span class="guest_info">
+                            <span class="guest_info_icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <path d="M4.00098 0.25C1.92598 0.25 0.250977 1.925 0.250977 4C0.250977 6.075 1.92598 7.75 4.00098 7.75C6.07598 7.75 7.75098 6.075 7.75098 4C7.75098 1.925 6.07598 0.25 4.00098 0.25ZM5.25098 5.75C5.12598 5.75 5.00098 5.7 4.90098 5.6L3.65098 4.35C3.55098 4.25 3.50098 4.125 3.50098 4V1.75C3.50098 1.475 3.72598 1.25 4.00098 1.25C4.27598 1.25 4.50098 1.475 4.50098 1.75V3.8L5.60098 4.9C5.70098 5 5.75098 5.15 5.75098 5.25C5.75098 5.575 5.47598 5.75 5.25098 5.75Z" fill="black"/>
+                                </svg>
+                            </span>
+                            <span>
+                                before <strong>13:00</strong>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="receipt_container_table">
+            <div class="receipt_continer_heading_bottom">
+                <div class="receipt_continer_heading_bottom_firstdivs">
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Double Room with Two Double Beds City View</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Primary Guest name:</span> John Smith</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Other Guests: :</span> Mr Cameron Williamson, Ms. Leslie Alexander, Ms. Leslie Alexander(Age 3) </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Meal Plan:</span> Breakfast is included in the final price. </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Rate comments:</span>  </span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+
+                    </div>
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Cancellation policy</span>
+                        <span class="receipt_continer_currency_detail">Cancel for free before [time] on [date]. 
+                        <br/>
+                        Receive a 5% refund for your booking if you cancel between 16 Dec 2024 12:30 AM and 20 Dec 2024 12:30 AM
+                        <br/>
+                        If you cancel your reservation after 20 Dec 2024 12:30 AM, you will not receive a refund. 
+                        The booking will be non-refundable.
+                        <br/>
+                        Cancellation timeline is as per the property's local time zone.
+                       
+                    </div>
+                     <div class=" remove-tablecell">
+                        <span class="timeline-wizard">
+                            <script>
+                                const datas = [
+                                  { "date": "12 Mar ", "percentage": 20, "color": "green" },
+                                  { "date": "12 Mar ", "percentage": 20, "color": "yellow" },
+                                  { "date": "Arrival", "percentage": "", "color": "red" }
+                                ];
+                                const timelineContainer = document.querySelector('.timeline-wizard');
+                                datas.forEach(data => {
+                                const timelineItem = document.createElement('span');
+                                timelineItem.classList.add('timeline-wizard-container');
+
+                                const dotCircle = document.createElement('span');
+                                dotCircle.classList.add('timeline-wizard-container-dotcircel');
+
+                                if (data.date === "Arrival") {
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+                                    timelineItem.classList.add('arrival-container');
+                                    dotCircle.classList.add('arrivaldot');
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+                                    timelineItem.appendChild(dotCircle); // Only add the dotCircle
+                                    const dateSpan = document.createElement('span'); // Create dateSpan
+                                    dateSpan.textContent = data.date; // Set the text
+                                    timelineItem.appendChild(dateSpan); 
+                                } else {  // For non-Arrival dates
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+
+                                    const line = document.createElement('span');
+                                    line.classList.add('horizontal-line');
+                                    line.style.backgroundColor = data.color;
+                                    dotCircle.appendChild(line);
+
+                                    timelineItem.appendChild(dotCircle);
+
+                                    const dateSpan = document.createElement('span');
+                                    dateSpan.textContent = data.date;
+                                    timelineItem.appendChild(dateSpan);
+
+                                }
+                                timelineContainer.appendChild(timelineItem);
+                                });
+                                </script>
+                        </span>
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="receipt_continer_heading_bottom">
+                <div class="receipt_continer_heading_bottom_firstdivs">
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Double Room with Two Double Beds City View</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Primary Guest name:</span> John Smith</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Other Guests: :</span> Mr Cameron Williamson, Ms. Leslie Alexander, Ms. Leslie Alexander(Age 3) </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Meal Plan:</span> Breakfast is included in the final price. </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Rate comments:</span>  </span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+
+                    </div>
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Cancellation policy</span>
+                        <span class="receipt_continer_currency_detail">Cancel for free before [time] on [date]. 
+                        <br/>
+                        Receive a 5% refund for your booking if you cancel between 16 Dec 2024 12:30 AM and 20 Dec 2024 12:30 AM
+                        <br/>
+                        If you cancel your reservation after 20 Dec 2024 12:30 AM, you will not receive a refund. 
+                        The booking will be non-refundable.
+                        <br/>
+                        Cancellation timeline is as per the property's local time zone.
+                       
+                    </div>
+                    <div class=" remove-tablecell">
+                        <span class="timeline-wizard">
+                            <script>
+                                const datas = [
+                                  { "date": "12 Mar ", "percentage": 20, "color": "green" },
+                                  { "date": "12 Mar ", "percentage": 20, "color": "yellow" },
+                                  { "date": "Arrival", "percentage": "", "color": "red" }
+                                ];
+                                const timelineContainer = document.querySelector('.timeline-wizard');
+                                datas.forEach(data => {
+                                const timelineItem = document.createElement('span');
+                                timelineItem.classList.add('timeline-wizard-container');
+
+                                const dotCircle = document.createElement('span');
+                                dotCircle.classList.add('timeline-wizard-container-dotcircel');
+
+                                if (data.date === "Arrival") {
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+                                    timelineItem.classList.add('arrival-container');
+                                    dotCircle.classList.add('arrivaldot');
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+                                    timelineItem.appendChild(dotCircle); // Only add the dotCircle
+                                    const dateSpan = document.createElement('span'); // Create dateSpan
+                                    dateSpan.textContent = data.date; // Set the text
+                                    timelineItem.appendChild(dateSpan); 
+                                } else {  // For non-Arrival dates
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+
+                                    const line = document.createElement('span');
+                                    line.classList.add('horizontal-line');
+                                    line.style.backgroundColor = data.color;
+                                    dotCircle.appendChild(line);
+
+                                    timelineItem.appendChild(dotCircle);
+
+                                    const dateSpan = document.createElement('span');
+                                    dateSpan.textContent = data.date;
+                                    timelineItem.appendChild(dateSpan);
+
+                                }
+                                timelineContainer.appendChild(timelineItem);
+                                });
+                                </script>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="receipt_continer_heading_bottom">
+                <div class="receipt_continer_heading_bottom_firstdivs">
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Double Room with Two Double Beds City View</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Primary Guest name:</span> John Smith</span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Other Guests: :</span> Mr Cameron Williamson, Ms. Leslie Alexander, Ms. Leslie Alexander(Age 3) </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Meal Plan:</span> Breakfast is included in the final price. </span>
+                        <span class="receipt_continer_currency_detail"><span class="guest_info_type">Rate comments:</span>  </span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+                        <span class="receipt_continer_currency_detail">“Hotel insurance has a cost, and must be paid voluntarily in the hotel…”</span>
+    
+                    </div>
+                    <div class=" remove-tablecell">
+                        <span class="receipt_continer_guestdetail_detail_heading">Cancellation policy</span>
+                        <span class="receipt_continer_currency_detail">Cancel for free before [time] on [date]. 
+                        <br/>
+                        Receive a 5% refund for your booking if you cancel between 16 Dec 2024 12:30 AM and 20 Dec 2024 12:30 AM
+                        <br/>
+                        If you cancel your reservation after 20 Dec 2024 12:30 AM, you will not receive a refund. 
+                        The booking will be non-refundable.
+                        <br/>
+                        Cancellation timeline is as per the property's local time zone.
+                       
+                    </div>
+					<div class=" remove-tablecell">
+                        <span class="timeline-wizard">
+                            <script>
+                                const datas = [
+                                  { "date": "12 Mar ", "percentage": 20, "color": "green" },
+                                  { "date": "12 Mar ", "percentage": 20, "color": "yellow" },
+                                  { "date": "Arrival", "percentage": "", "color": "red" }
+                                ];
+                                const timelineContainer = document.querySelector('.timeline-wizard');
+                                datas.forEach(data => {
+                                const timelineItem = document.createElement('span');
+                                timelineItem.classList.add('timeline-wizard-container');
+
+                                const dotCircle = document.createElement('span');
+                                dotCircle.classList.add('timeline-wizard-container-dotcircel');
+
+                                if (data.date === "Arrival") {
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+                                    timelineItem.classList.add('arrival-container');
+                                    dotCircle.classList.add('arrivaldot');
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+                                    timelineItem.appendChild(dotCircle); // Only add the dotCircle
+                                    const dateSpan = document.createElement('span'); // Create dateSpan
+                                    dateSpan.textContent = data.date; // Set the text
+                                    timelineItem.appendChild(dateSpan); 
+                                } else {  // For non-Arrival dates
+                                    const dot = document.createElement('span');
+                                    dot.classList.add('timeline-wizard-container-dot');
+
+                                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                                    svg.setAttribute('width', '9');
+                                    svg.setAttribute('height', '10');
+                                    svg.setAttribute('viewBox', '0 0 9 10');
+                                    svg.setAttribute('fill', 'none');
+                                    svg.classList.add('star_svg');
+
+                                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                    circle.setAttribute('cx', '4.5');
+                                    circle.setAttribute('cy', '4.9165');
+                                    circle.setAttribute('r', '4.5');
+                                    circle.setAttribute('fill', data.color); // Set color dynamically
+
+                                    svg.appendChild(circle);
+                                    dot.appendChild(svg);
+                                    dotCircle.appendChild(dot);
+
+                                    const line = document.createElement('span');
+                                    line.classList.add('horizontal-line');
+                                    line.style.backgroundColor = data.color;
+                                    dotCircle.appendChild(line);
+
+                                    timelineItem.appendChild(dotCircle);
+
+                                    const dateSpan = document.createElement('span');
+                                    dateSpan.textContent = data.date;
+                                    timelineItem.appendChild(dateSpan);
+
+                                }
+                                timelineContainer.appendChild(timelineItem);
+                                });
+                                </script>
+                        </span>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+         
+       
+    </div>
+    <Footer>
+        <div class="paymentInformation_container">
+            <div class="paymentInformation_container_info">Payable through XXX, acting as agent for the service operating company, details of which can be provided upon request. VAT: YYY Reference: ZZZ".</div>
+        </div>
+    </Footer>
+</body>
+</html>
