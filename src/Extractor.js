@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   createTheme,
   Collapse,
+  TextField,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -38,6 +39,7 @@ function App() {
   const imageRef = useRef(null);
   const [kycOpen, setKycOpen] = useState(true);
   const [passportOpen, setPassportOpen] = useState(false);
+  const [editedNames, setEditedNames] = useState({});
 
   const handleFileChange = (event) => {
     setSelectedFiles(Array.from(event.target.files));
@@ -98,11 +100,11 @@ function App() {
   };
 
   const handleFileDirectoryClick = () => {
-      if(importedDocuments.length > 0) {
-          const randomIndex = Math.floor(Math.random() * importedDocuments.length);
-          openImageViewer(randomIndex);
-      }
-  }
+    if (importedDocuments.length > 0) {
+      const randomIndex = Math.floor(Math.random() * importedDocuments.length);
+      openImageViewer(randomIndex);
+    }
+  };
 
   useEffect(() => {
     if (importedDocuments.length > 0) {
@@ -110,41 +112,23 @@ function App() {
     }
   }, [importedDocuments]);
 
+  // Place these functions INSIDE the App component, BEFORE the return
+  const handleNameChange = (index, newName) => {
+    setEditedNames({ ...editedNames, [index]: newName });
+  };
+
+  const getDisplayName = (doc, index) => {
+    if (editedNames[index] !== undefined) {
+      return editedNames[index];
+    } else {
+      return doc.name.slice(0, -4);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <MainContent>
-        <Grid item xs={12} md={12}>
-          <Typography variant="h5" gutterBottom>
-            File Directory
-          </Typography>
-          <List>
-            <ListItemButton onClick={handleKycToggle}>
-              <ListItemText primary="KYC" />
-              {kycOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={kycOpen} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton onClick={handlePassportToggle} sx={{ pl: 4 }}>
-                  <ListItemText primary="Passport ID" />
-                  {passportOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={passportOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 8 }} onClick={handleFileDirectoryClick}>
-                      <ListItemText primary="Front" />
-                    </ListItemButton>
-                    <ListItemButton sx={{ pl: 8 }} onClick={handleFileDirectoryClick}>
-                      <ListItemText primary="Back" />
-                    </ListItemButton>
-                  </List>
-                </Collapse>
-                <ListItemButton sx={{ pl: 4 }} onClick={handleFileDirectoryClick}>
-                  <ListItemText primary="Other KYC File" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-          </List>
-        </Grid>
+        {/* ... (rest of your component remains the same) */}
         <Grid container spacing={3}>
           <Grid item sx={{ maxWidth: "250px" }}>
             <Typography variant="h5" gutterBottom>
@@ -220,15 +204,24 @@ function App() {
                   </Box>
                 )}
               </Grid>
-              <Grid item xs={12} md={12} sx={{ marginLeft: "50px" }}>
+              <Grid item xs={12} md={12} sx={{ marginLeft: "50px", width: '400px' }}>
                 <Typography variant="h5" gutterBottom>
                   Scanned Images
                 </Typography>
                 <List>
                   {importedDocuments?.map((doc, index) => (
                     <ListItem key={index} disablePadding>
-                      <ListItemButton onClick={() => openImageViewer(index)}>
-                        <ListItemText primary={doc.name.slice(0, -4)} sx={{ textTransform: "capitalize" }} />
+                      <ListItemButton>
+                        <TextField
+                          value={getDisplayName(doc, index)}
+                          onChange={(e) => handleNameChange(index, e.target.value)}
+                          variant="standard"
+                          size="small"
+                          sx={{ textTransform: "capitalize" }}
+                        />
+                        <ListItemButton onClick={() => openImageViewer(index)}>
+                          <ListItemText primary="" />
+                        </ListItemButton>
                       </ListItemButton>
                     </ListItem>
                   ))}
